@@ -42,7 +42,16 @@ module.exports = {
     '@typescript-eslint/no-unsafe-return': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
   },
-  ignorePatterns: [
-    'src/migrations/*.ts'
+    ignorePatterns: [
+      "**/src/migrations/*.ts",
+      "**/src/generate/fixtures/**/*.ts",
+      "**/src/generate/templates/model/*.ts",
+      "**/src/generate/templates/rest-api/**/*.ts",
+      "**/src/generate/specs/**/app.controller.ts",
+      "**/src/generate/specs/**/api.controller.ts",
+      "**/src/generate/specs/entity/test-foo-bar.entity.ts",
+      "**/src/generate/specs/entity/test-foo-bar.entity.mongodb.ts",
+      "**/src/generate/templates/entity/entity.ts",
+      "**/src/generate/templates/entity/entity.mongodb.ts"
   ]
 };
