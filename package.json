@@ -8,8 +8,8 @@
     "packages/*"
   ],
   "scripts": {
-    "lint": "eslint --ext ts --no-eslintrc -c .eslintrc.js",
-    "lint:fix": "eslint --ext ts --fix",
+    "lint": "npx eslint --ext ts --no-eslintrc -c .eslintrc.js",
+    "lint:fix": "npx eslint --ext ts --fix",
     "start-docker": "docker compose build && docker compose up -d",
     "stop-docker": "docker compose down",
     "clean": "lerna clean",
