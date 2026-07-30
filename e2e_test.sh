@@ -1,17 +1,20 @@
 #!/usr/bin/env bash
 set -e
 
-rm -rf ./node_modules
-npm install -g @foal/cli
+# Build local monorepo packages first
+npx lerna run build
 
 rm -rf e2e-test-temp
 
 mkdir e2e-test-temp
 cd e2e-test-temp
 
-# Test app creation
-npx --yes @foal/cli createapp my-app
+# Test app creation using local CLI
+node ../packages/cli/lib/index.js createapp my-app
 cd my-app
+
+# Install local monorepo packages into the test app
+npm install ../../packages/core ../../packages/cli ../../packages/typeorm
 
 # Check some compilation errors
 if grep -Rl "../../Users/loicp" .; then
@@ -131,9 +134,12 @@ npx foal run create-user
 
 cd ..
 
-# Test app creation
-npx @foal/cli createapp my-mongodb-app --mongodb --yaml
+# Test app creation using local CLI
+node ../packages/cli/lib/index.js createapp my-mongodb-app --mongodb --yaml
 cd my-mongodb-app
+
+# Install local monorepo packages into the test app
+npm install ../../packages/core ../../packages/cli ../../packages/mongodb
 
 # Check some compilation errors
 if grep -Ril "../../Users/loicp" .; then
